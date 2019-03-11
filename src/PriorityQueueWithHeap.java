@@ -122,6 +122,16 @@ public class PriorityQueueWithHeap {
         }
     }
 
+    //teacher requirement
+    public String state(){
+        return type.toUpperCase()+ " - Heap";
+    }
+
+    //teacher requirement
+    public int size(){
+        return this.currentSize;
+    }
+
     public class heapNode {
             public Object object;
             public int key;
