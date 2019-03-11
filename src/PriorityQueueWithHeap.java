@@ -71,16 +71,12 @@ public class PriorityQueueWithHeap {
 
     private void doubleHeapSize(){
         HeapNode [] doubleSizeHeap = new HeapNode[this.maxSize*2];
-        for(int i=0; i<this.Heap.length; i++){
-            doubleSizeHeap[i] = this.Heap[i];
-        }
-        this.Heap = doubleSizeHeap;
+        System.arraycopy(this.Heap, 0, doubleSizeHeap, 0, this.Heap.length);
+        this.Heap = doubleSizeHeap.clone();
     }
 
     public void insert(int key, Object object) {
-        if(this.currentSize == this.maxSize){
-            doubleHeapSize();
-        }
+        if(this.currentSize == this.maxSize) {doubleHeapSize();}
         Heap[++currentSize] = new HeapNode(key,object);
         int currentSizeIndex = this.currentSize;
         while (compareKeysReturnBoolean(Heap[currentSizeIndex].key, Heap[parent(currentSizeIndex)].key)) {
@@ -155,7 +151,7 @@ public class PriorityQueueWithHeap {
           public HeapNode(int key, Object object){
               this.object = object;
               this.key = key;
-          }  
+          }
     }
 
     public static void main(String[] arg) {
