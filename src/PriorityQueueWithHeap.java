@@ -1,5 +1,5 @@
 public class PriorityQueueWithHeap {
-    private heapNode[] Heap;
+    private HeapNode[] Heap;
     private int currentSize;
     private int maxSize;
     private String type; //max or min
@@ -7,11 +7,11 @@ public class PriorityQueueWithHeap {
     public PriorityQueueWithHeap(int maxSize, String typeOfHeap) {
         this.maxSize = maxSize;
         this.currentSize = 0;
-        Heap = new heapNode[this.maxSize + 1];
+        Heap = new HeapNode[this.maxSize + 1];
         if(typeOfHeap.equals("max")) {
-            Heap[0] = new heapNode(Integer.MAX_VALUE); //heaps top node starts at 1
+            Heap[0] = new HeapNode(Integer.MAX_VALUE); //heaps top node starts at 1
         }else {
-            Heap[0] = new heapNode(Integer.MIN_VALUE); //heaps top node starts at 1
+            Heap[0] = new HeapNode(Integer.MIN_VALUE); //heaps top node starts at 1
         }
         this.type = typeOfHeap;
     }
@@ -33,7 +33,7 @@ public class PriorityQueueWithHeap {
     }
 
     private void swapPosition(int firstPosition, int secondPosition) {
-        heapNode temp = Heap[firstPosition];
+        HeapNode temp = Heap[firstPosition];
         Heap[firstPosition] = Heap[secondPosition];
         Heap[secondPosition] = temp;
     }
@@ -69,8 +69,19 @@ public class PriorityQueueWithHeap {
         }
     }
 
+    private void doubleHeapSize(){
+        HeapNode [] doubleSizeHeap = new HeapNode[this.maxSize*2];
+        for(int i=0; i<this.Heap.length; i++){
+            doubleSizeHeap[i] = this.Heap[i];
+        }
+        this.Heap = doubleSizeHeap;
+    }
+
     public void insert(int key, Object object) {
-        Heap[++currentSize] = new heapNode(key,object);
+        if(this.currentSize == this.maxSize){
+            doubleHeapSize();
+        }
+        Heap[++currentSize] = new HeapNode(key,object);
         int currentSizeIndex = this.currentSize;
         while (compareKeysReturnBoolean(Heap[currentSizeIndex].key, Heap[parent(currentSizeIndex)].key)) {
             swapPosition(currentSizeIndex, parent(currentSizeIndex));
@@ -93,7 +104,7 @@ public class PriorityQueueWithHeap {
         return top;
     }
 
-    public heapNode peekTop(){
+    public HeapNode peekTop(){
         return Heap[1];
     }
 
@@ -132,16 +143,16 @@ public class PriorityQueueWithHeap {
         return this.currentSize;
     }
 
-    public class heapNode {
+    public class HeapNode {
             public Object object;
             public int key;
 
-          public heapNode(int key){
+          public HeapNode(int key){
               this.object = new Object();
               this.key = key;
           }
 
-          public heapNode(int key, Object object){
+          public HeapNode(int key, Object object){
               this.object = object;
               this.key = key;
           }  
