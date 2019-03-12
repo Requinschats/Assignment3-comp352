@@ -1,7 +1,7 @@
-public class tests {
+public class Tests {
     public static void main(String[] arg) {
         System.out.println("The Original Heap is ");
-        PriorityQueueWithHeap queue = new PriorityQueueWithHeap(15, "min");
+        BinaryHeapPriorityQueue queue = new BinaryHeapPriorityQueue(15, "min");
         queue.insert(5, "5");
         queue.insert(3, "3");
         queue.insert(17, "17");
