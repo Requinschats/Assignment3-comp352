@@ -1,14 +1,14 @@
 public class QueueNode {
-    public Object object;
+    public Object value;
     public int key;
 
     public QueueNode(int key) {
-        this.object = new Object();
+        this.value = new Object();
         this.key = key;
     }
 
-    public QueueNode(int key, Object object) {
-        this.object = object;
+    public QueueNode(int key, Object value) {
+        this.value = value;
         this.key = key;
     }
 }

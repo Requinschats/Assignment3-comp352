@@ -13,7 +13,7 @@ public class Tests {
         queue.insert(9, "9");
         queue.printHeap();
         System.out.println("Extract top: ");
-        queue.extractTop();
+        queue.remove();
         queue.printHeap();
         System.out.println("Toggle: ");
         queue.toggle();

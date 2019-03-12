@@ -88,7 +88,7 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
         this.Heap = doubleSizeHeap.clone();
     }
 
-    private QueueNode peekTop() {
+    private QueueNode top() {
         return Heap[1];
     }
 
@@ -102,11 +102,11 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
 
 
     @Override
-    public void insert(int key, Object object) {
+    public void insert(int key, Object value) {
         if (this.currentSize == this.maxSize) {
             doubleHeapSize();
         }
-        Heap[++currentSize] = new QueueNode(key, object);
+        Heap[++currentSize] = new QueueNode(key, value);
         int currentSizeIndex = this.currentSize;
         while (compareKeysReturnBoolean(Heap[currentSizeIndex].key, Heap[parent(currentSizeIndex)].key)) {
             swapPosition(currentSizeIndex, parent(currentSizeIndex));
@@ -130,7 +130,7 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
     }
 
     @Override
-    public int extractTop() {
+    public int remove() {
         int top = Heap[1].key;
         Heap[1] = Heap[currentSize--];
         typeHeapify(1);
@@ -162,6 +162,21 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
     @Override
     public int size() {
         return this.currentSize;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.currentSize == 0;
+    }
+
+    @Override
+    public void switchToMin() {
+        throw new RuntimeException("not implemented");
+    }
+
+    @Override
+    public void switchToMax() {
+        throw new RuntimeException("not implemented");
     }
 
 }

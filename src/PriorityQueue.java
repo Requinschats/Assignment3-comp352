@@ -3,11 +3,18 @@ public interface PriorityQueue {
 
     void printHeap();
 
-    int extractTop();
+    int remove();
 
     void toggle();
 
     String state();
 
     int size();
+
+    boolean isEmpty();
+
+    void switchToMin();
+
+    void switchToMax();
+
 }
