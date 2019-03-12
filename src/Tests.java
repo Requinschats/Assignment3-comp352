@@ -1,7 +1,7 @@
 public class Tests {
     public static void main(String[] arg) {
         System.out.println("The Original Heap is ");
-        BinaryHeapPriorityQueue queue = new BinaryHeapPriorityQueue(15, BinaryHeapPriorityQueue.HEAP_TYPE.MIN);
+        PriorityQueue queue = new BinaryHeapPriorityQueue(15, BinaryHeapPriorityQueue.HEAP_TYPE.MIN);
         queue.insert(5, "5");
         queue.insert(3, "3");
         queue.insert(17, "17");
@@ -25,6 +25,5 @@ public class Tests {
         System.out.println("Another toggle");
         queue.toggle();
         queue.printHeap();
-
     }
 }

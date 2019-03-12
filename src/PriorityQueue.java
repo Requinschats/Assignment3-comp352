@@ -3,7 +3,9 @@ public interface PriorityQueue {
 
     void printHeap();
 
-    int remove();
+    boolean isEmpty();
+
+    QueueNode remove();
 
     void toggle();
 
@@ -11,10 +13,9 @@ public interface PriorityQueue {
 
     int size();
 
-    boolean isEmpty();
-
     void switchToMin();
 
     void switchToMax();
 
+    QueueNode top();
 }
