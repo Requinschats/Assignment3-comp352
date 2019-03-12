@@ -83,12 +83,19 @@ public class PriorityQueueWithHeap {
             swapPosition(currentSizeIndex, parent(currentSizeIndex));
             currentSizeIndex = parent(currentSizeIndex);
         }
+        
     }
 
     public void printHeap() {
-        for (int i = 1; i <= currentSize / 2; i++) {
-            System.out.print(" PARENT : " + Heap[i].object + " LEFT CHILD : " +
-                    Heap[2 * i].object + " RIGHT CHILD :" + Heap[2 * i + 1].object);
+        int lineSize=1;
+        int printIndex=1;
+        for(int j=0; j<(Math.ceil(Math.log(this.currentSize)/Math.log(2))); j++) {
+            for (int i = 1; i <= lineSize; i++) {
+                if(printIndex<=currentSize) {
+                    System.out.print(this.Heap[printIndex++].key + " ");
+                }
+            }
+            lineSize = lineSize*2;
             System.out.println();
         }
     }
@@ -125,7 +132,6 @@ public class PriorityQueueWithHeap {
             while (i >= 1) {
                 typeHeapify(i--);
             }
-            typeHeapify(1);
         }
     }
 
@@ -152,38 +158,5 @@ public class PriorityQueueWithHeap {
               this.object = object;
               this.key = key;
           }
-    }
-
-    public static void main(String[] arg) {
-        System.out.println("The Max Heap is ");
-        PriorityQueueWithHeap maxHeap = new PriorityQueueWithHeap(15, "max");
-        maxHeap.insert(5, "5");
-        maxHeap.insert(3, "3");
-        maxHeap.insert(17, "17");
-        maxHeap.insert(10, "10");
-        maxHeap.insert(84, "84");
-        maxHeap.insert(34, "34");
-        maxHeap.insert(6, "6");
-        maxHeap.insert(22, "22");
-        maxHeap.insert(9, "9");
-        maxHeap.printHeap();
-        System.out.println("Original heap: ");
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-        System.out.println("Toggle: ");
-        maxHeap.toggle();
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-        System.out.println("Toggle: ");
-        maxHeap.toggle();
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.extractTop());
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-        System.out.println("The top value is " + maxHeap.peekTop().key);
-
     }
 }
