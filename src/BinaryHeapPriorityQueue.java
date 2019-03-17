@@ -20,6 +20,7 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
         this.heapType = heapType;
     }
 
+
     public BinaryHeapPriorityQueue(HEAP_TYPE heapType) {
         this(DEFAULT_SIZE, heapType);
     }
@@ -41,8 +42,8 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
     }
 
     private void swapPosition(int firstPosition, int secondPosition) {
-        QueueNode temp = Heap[firstPosition];
-        Heap[firstPosition] = Heap[secondPosition];
+        QueueNode temp =  new QueueNode(Heap[firstPosition]);
+        Heap[firstPosition] = new QueueNode(Heap[secondPosition]);
         Heap[secondPosition] = temp;
     }
 
@@ -81,6 +82,7 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
         QueueNode[] doubleSizeHeap = new QueueNode[this.maxSize * 2];
         System.arraycopy(this.Heap, 0, doubleSizeHeap, 0, this.Heap.length);
         this.Heap = doubleSizeHeap.clone();
+        this.maxSize *= 2;
     }
 
     private int compareKeys(int key1, int key2) {
@@ -98,7 +100,7 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
 
     @Override
     public void insert(int key, Object value) {
-        if (this.currentSize == this.maxSize) {
+        if (this.currentSize == this.maxSize-1) {
             doubleHeapSize();
         }
         Heap[++currentSize] = new QueueNode(key, value);
@@ -126,8 +128,8 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
 
     @Override
     public QueueNode remove() {
-        QueueNode top = Heap[1];
-        Heap[1] = Heap[currentSize--];
+        QueueNode top = new QueueNode(Heap[1]);
+        Heap[1] = new QueueNode(Heap[currentSize--]);
         typeHeapify(1);
         return top;
     }
@@ -158,7 +160,8 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
     @Override
     public void switchToMin() {
         this.heapType = HEAP_TYPE.MIN;
-        int i = (currentSize - 2) / 2;
+        this.swapPosition(1, this.currentSize);
+        int i = (currentSize) / 2;
         while (i >= 1) {
             typeHeapify(i--);
         }
@@ -167,7 +170,8 @@ public class BinaryHeapPriorityQueue implements PriorityQueue {
     @Override
     public void switchToMax() {
         this.heapType = HEAP_TYPE.MAX;
-        int i = (currentSize - 2) / 2;
+        this.swapPosition(1, this.currentSize);
+        int i = (currentSize) / 2;
         while (i >= 1) {
             typeHeapify(i--);
         }

@@ -11,4 +11,9 @@ public class QueueNode {
         this.value = value;
         this.key = key;
     }
+
+    public QueueNode (QueueNode queueNode){
+        this.key = queueNode.key;
+        this.value = queueNode.value;
+    }
 }

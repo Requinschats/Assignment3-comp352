@@ -18,7 +18,7 @@ public class Tests {
         System.out.println("Toggle: ");
         queue.toggle();
         queue.printHeap();
-        System.out.println("Insert a 1 and 2: ");
+        System.out.println("Insert a 1 and a 2");
         queue.insert(1, "1");
         queue.insert(2, "2");
         queue.printHeap();

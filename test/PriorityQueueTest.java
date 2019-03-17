@@ -6,7 +6,7 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class PriorityQueueTest {
-    PriorityQueue priorityQueue = new BinaryHeapPriorityQueue(BinaryHeapPriorityQueue.HEAP_TYPE.MAX);
+    private PriorityQueue priorityQueue = new BinaryHeapPriorityQueue(BinaryHeapPriorityQueue.HEAP_TYPE.MAX);
 
     @Test
     public void test() {
@@ -17,14 +17,6 @@ public class PriorityQueueTest {
     public void insert_1a3a2a1_topOf3() {
         new ArrayList<Integer>(Arrays.asList(1,3,2,1)).forEach(key -> priorityQueue.insert(key, null));
         assertEquals(3, priorityQueue.top().key);
-    }
-
-    @Test
-    public void switchToMin_maxQueue_switchesToMin() {
-        priorityQueue.insert(1, null);
-        priorityQueue.insert(2, null);
-        priorityQueue.switchToMin();
-        assertEquals(1, priorityQueue.top().key);
     }
 
     @Test
@@ -52,12 +44,6 @@ public class PriorityQueueTest {
     }
 
     @Test
-    public void remove_oneEntry_returnsEntry() {
-        priorityQueue.insert(1, null);
-        assertEquals(1, priorityQueue.remove().key);
-    }
-
-    @Test
     public void remove_twoEntries_removesTopEntry() {
         priorityQueue.insert(1, null);
         priorityQueue.insert(2, null);
@@ -66,10 +52,10 @@ public class PriorityQueueTest {
     }
 
     @Test
-    public void insert_1024entries_returnsTop() {
-       for (int i = 1; i <= 1024; ++i) {
+    public void insert_2048entries_returnsTop() {
+       for (int i = 1; i <= 2048; ++i) {
            priorityQueue.insert(i, null);
        }
-       assertEquals(1024, priorityQueue.top().key);
+       assertEquals(2048, priorityQueue.top().key);
     }
 }
